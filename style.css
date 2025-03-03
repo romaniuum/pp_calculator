@@ -18,14 +18,16 @@ body {
     display: flex;
     font-family: 'Dosis', sans-serif;
     font-display: swap;
-    height: inherit;
+    height: 100vh; /* Используем vh для полной высоты */
     justify-content: center;
 }
 
 .calculator {
     border-radius: 16px;
-    flex-basis: 400px;
-    height: 600px;
+    flex-basis: 90%; /* Гибкая ширина */
+    max-width: 400px; /* Ограничение максимальной ширины */
+    height: 80vh; /* Гибкая высота */
+    max-height: 600px; /* Ограничение максимальной высоты */
     padding: 20px 35px;
     display: flex;
     flex-direction: column;
@@ -43,7 +45,20 @@ body {
     background: rgba(255, 255, 255, 0.75);
     color: #000000;
 }
+.calculator.light-theme .theme-toggle {
+    background: #e0e0e0; /* Светло-серый фон */
+    color: #333333; /* Тёмный текст для контраста */
+    border: 1px solid #cccccc; /* Лёгкая граница для стиля */
+}
+.calculator.dark-theme .theme-toggle {
+    background: #666666; /* Тёмно-серый фон */
+    color: #ffffff; /* Белый текст для контраста */
+    border: 1px solid #444444; /* Тёмная граница для стиля */
+}
 
+.theme-toggle:hover {
+    opacity: 5; /* Лёгкое затемнение при наведении */
+}
 /* Темная тема */
 .calculator.dark-theme {
     background: #333333;
@@ -61,11 +76,10 @@ body {
     border-radius: 16px;
     flex-basis: 20%;
     font-family: inherit;
-    font-size: 24px;
-    height: 65px;
+    font-size: clamp(18px, 5vw, 24px); /* Адаптивный шрифт */
+    height: clamp(50px, 10vh, 65px); /* Адаптивная высота */
     cursor: pointer;
     width: 100%;
-    
 }
 
 .calculator__button:hover {
@@ -95,16 +109,18 @@ body {
 }
 
 /* Экран */
+/* Экран */
 .calculator__screen {
     background: rgba(255, 255, 255, 0.75);
     border: 1px solid rgba(255, 255, 255, 0.01);
     border-radius: 16px;
     color: black;
-    font-size: 35px;
+    font-size: clamp(25px, 6vw, 35px); /* Адаптивный размер шрифта */
     overflow: auto;
     padding: 20px;
     text-align: right;
     width: 100%;
+    margin-top: 20px;
 }
 
 .calculator.dark-theme .calculator__screen {
@@ -121,31 +137,64 @@ body {
 
 /* Кнопка переключения тем */
 .theme-toggle {
-    position: absolute;
-    top: 10px;
-    right: 10px;
     padding: 5px 10px;
-    background: #ccc;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    align-self: flex-end;
+    margin-top: 5px;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: clamp(14px, 4vw, 16px); /* Адаптивный шрифт */
 }
-
 /* Адаптивность */
-@media (max-width: 600px) {
+@media (max-width: 480px) {
     .calculator {
-        padding: 10px;
-    }
-    .calculator__button {
-        font-size: 18px;
-        height: 50px;
+        padding: 10px 15px;
+        flex-basis: 95%;
+        height: 90vh;
     }
     .calculator__screen {
-        font-size: 25px;
+        padding: 15px;
+    }
+    .calculator__button-row {
+        margin: 2% 0; /* Уменьшаем отступы */
     }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 481px) and (max-width: 768px) {
+    .calculator {
+        flex-basis: 80%;
+        padding: 15px 25px;
+        height: 85vh;
+    }
+    .calculator__screen {
+        padding: 18px;
+    }
+    .calculator__button {
+        height: 60px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .calculator {
+        flex-basis: 70%;
+        max-width: 500px;
+        height: 80vh;
+    }
+    .calculator__button {
+        height: 70px;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1200px) {
+    .calculator {
+        flex-basis: 60%;
+        max-width: 550px;
+        height: 75vh;
+    }
+}
+
+@media (min-width: 1201px) {
     .calculator {
         flex-basis: 600px;
         height: 700px;

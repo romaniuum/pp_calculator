@@ -1,0 +1,160 @@
+html {
+    box-sizing: border-box;
+    height: 100%;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    align-items: center;
+    background: linear-gradient(320deg, #a2d2ff, #f7d1ba);
+    margin: 0;
+    display: flex;
+    font-family: 'Dosis', sans-serif;
+    font-display: swap;
+    height: inherit;
+    justify-content: center;
+}
+
+.calculator {
+    border-radius: 16px;
+    flex-basis: 400px;
+    height: 600px;
+    padding: 20px 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+/* Светлая тема */
+.calculator.light-theme {
+    background: #f1eeee;
+    color: #000000;
+}
+
+.calculator.light-theme .calculator__button {
+    background: rgba(255, 255, 255, 0.75);
+    color: #000000;
+}
+
+/* Темная тема */
+.calculator.dark-theme {
+    background: #333333;
+    color: #ffffff;
+}
+
+.calculator.dark-theme .calculator__button {
+    background: rgba(0, 0, 0, 0.75);
+    color: #ffffff;
+}
+
+/* Общие стили для кнопок */
+.calculator__button {
+    border: 1px solid rgba(35, 35, 35, 0.1);
+    border-radius: 16px;
+    flex-basis: 20%;
+    font-family: inherit;
+    font-size: 24px;
+    height: 65px;
+    cursor: pointer;
+    width: 100%;
+    
+}
+
+.calculator__button:hover {
+    background-color: inherit;
+}
+
+.calculator__button:active {
+    background-color: rgba(204, 204, 17, 0.411);
+}
+
+/* Операторы */
+.calculator__button--operator {
+    background: #ffcccb; /* Светлая тема */
+}
+
+.calculator.dark-theme .calculator__button--operator {
+    background: #ff6666; /* Темная тема */
+}
+
+/* Модификаторы для кнопок */
+.calculator__button--double {
+    flex-basis: 47%;
+}
+
+.calculator__button--triple {
+    flex-basis: 73%;
+}
+
+/* Экран */
+.calculator__screen {
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.01);
+    border-radius: 16px;
+    color: black;
+    font-size: 35px;
+    overflow: auto;
+    padding: 20px;
+    text-align: right;
+    width: 100%;
+}
+
+.calculator.dark-theme .calculator__screen {
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
+}
+
+/* Строки кнопок */
+.calculator__button-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 5% 0;
+}
+
+/* Кнопка переключения тем */
+.theme-toggle {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    background: #ccc;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Адаптивность */
+@media (max-width: 600px) {
+    .calculator {
+        padding: 10px;
+    }
+    .calculator__button {
+        font-size: 18px;
+        height: 50px;
+    }
+    .calculator__screen {
+        font-size: 25px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .calculator {
+        flex-basis: 600px;
+        height: 700px;
+    }
+    .calculator__button {
+        font-size: 30px;
+        height: 80px;
+    }
+    .calculator__screen {
+        font-size: 45px;
+    }
+}
